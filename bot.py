@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class BronzeMedalist(discord.Client):
+class AutoDisconnect(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(activity=discord.Game("get disconnected"), *args, **kwargs)
         self.channel_id = int(os.environ.get("CHANNEL_ID", None))
@@ -36,7 +36,7 @@ class BronzeMedalist(discord.Client):
                 await member.move_to(None)
 
 
-bot = BronzeMedalist()
+bot = AutoDisconnect()
 
 token = os.environ.get("TOKEN", None)
 if token is None or len(token.strip()) == 0:
